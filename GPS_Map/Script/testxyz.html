@@ -1,0 +1,68 @@
+﻿<html>
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v1.0.0-beta.2/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet/v1.0.0-beta.2/leaflet.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+
+</head>
+
+  <body>
+
+    <div id="map" style="width: 100%; height: 100%"></div>
+
+    <script>
+
+	var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            osmAttribution = '',
+            osmLayer = new L.TileLayer(osmUrl, {maxZoom: 22, attribution: osmAttribution});
+
+//	var testUrl = '{z}/{x}/{y}.png',
+	var testUrl = 'http://192.168.0.50:90/tiles/{z}/{x}/{y}.png',
+            testLayer = new L.TileLayer(testUrl, {maxZoom: 22, attribution: osmAttribution});
+
+
+                var map = new L.Map('map', {center: new L.LatLng(50.8, 33.7), zoom: 7, layers: [osmLayer]});
+
+                var baseMaps = {
+
+                        "osm": osmLayer
+
+                        };
+
+                var overlayMaps = {
+
+                        "Тайлы тест": testLayer
+
+                        };
+
+                layersControl = new L.Control.Layers(baseMaps, overlayMaps);
+
+                map.addControl(layersControl);
+
+    map.on('click', onMapClick);
+
+    var popup = new L.Popup();
+
+    function onMapClick(e) {
+
+    var latlngStr = '(' + e.latlng.lat.toFixed(3) + ', ' + e.latlng.lng.toFixed(3) + ')';
+
+        popup.setLatLng(e.latlng);
+
+        popup.setContent("Координаты точки " + latlngStr);
+
+        map.openPopup(popup);
+
+    }
+
+    </script>
+
+  </body>
+
+</html>
