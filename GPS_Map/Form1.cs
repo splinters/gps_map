@@ -16,6 +16,7 @@ using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms.Markers;
 using System.Threading;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 using System.Net;
 
 namespace GPS_Map
@@ -120,6 +121,9 @@ namespace GPS_Map
 
         public GMapProvider p_topo, p_ukrweb, p_kyiv;
         public GMapOverlay routes = new GMapOverlay("routes");
+
+        public GMapOverlay routepartial = new GMapOverlay("routepartial");
+
         public List<PointLatLng> points = new List<PointLatLng>();
 
         public Form1()
@@ -309,11 +313,10 @@ namespace GPS_Map
             gMap.Overlays.Add(markerGPS);
             gMap.Overlays.Add(markersOverlay);
 
-
             routes = new GMapOverlay("routes");
+            routepartial = new GMapOverlay("routepartial");
 
             /*
-            
             List<PointLatLng> points = new List<PointLatLng>();
             points.Add(new PointLatLng(48.866383, 2.323575));
             points.Add(new PointLatLng(48.863868, 2.321554));
@@ -321,8 +324,8 @@ namespace GPS_Map
             GMapRoute route = new GMapRoute(points, "A walk in the park");
             route.Stroke = new Pen(Color.Red, 3);
             routes.Routes.Add(route);
-            gmap.Overlays.Add(routes);*/
-
+            gmap.Overlays.Add(routes);
+            */
 
             /*
              http://192.168.0.50:98/route/?point=50.2748162,%2030.380176&point=49.037868%2C32.255859&locale=uk&points_encoded=false
@@ -331,53 +334,7 @@ namespace GPS_Map
              bbox
              points
              snapped_waypoints
-
-                
-
-             
              */
-            /*
-                        GMapOverlay routes = new GMapOverlay("routes");
-                        List<PointLatLng> points = new List<PointLatLng>();
-                        points.Add(new PointLatLng(50.2748162, 30.380176));  //$GPRMC,103905.001,A,5027.48162,N,03038.01757,E,00.00,000.0,010617,,,N*7D
-                        points.Add(new PointLatLng(50.3,30.3));
-                        GMapRoute route = new GMapRoute(points, "test route");
-                        route.Stroke = new Pen(Color.Red, 3);
-                        routes.Routes.Add(route);
-                        gMap.Overlays.Add(routes);
-            */
-
-            /*
-                        var webClient = new System.Net.WebClient();
-                        //WebRequest request = WebRequest.Create(routeUrl + pointUrl);
-                        var responseStr = webClient.DownloadString(Settings.Option.RouteUrl+"/route/?point=50.4580268859863,30.6336269378662&point=50.4190189027371,30.4747009277344&locale=uk&points_encoded=false");
-                        //WebResponse wr = request.GetResponse();
-
-                        //List<PointLatLng> points = new List<PointLatLng>();
-
-                        JObject jResponse = JObject.Parse(responseStr);
-                        JArray jCoordinates = (JArray)jResponse["paths"][0]["points"]["coordinates"];
-                        foreach (JToken jcoord in jCoordinates.Children())
-                        {
-                            double lng = Convert.ToDouble(jcoord[0].ToString().Replace('.', ','));
-                            double lat = Convert.ToDouble(jcoord[1].ToString().Replace('.', ','));
-                            points.Add(new PointLatLng(lat, lng));
-                        }
-
-                        GMapOverlay routes = new GMapOverlay("routes");
-                        GMapRoute route = new GMapRoute(points, "test route");
-                        route.IsHitTestVisible = true;
-                        route.Stroke = new Pen(Color.Red, 3);
-                        routes.Routes.Add(route);
-                        gMap.Overlays.Add(routes);
-
-                        GMapMarker marker_ = new GMarkerCross(points[0]);
-                        routes.Markers.Add(marker_);
-
-                        gMap.ZoomAndCenterRoute(route);
-            */
-
-
 
             //Хоча трохи надлишкова, ви можете скористатися наявними можливостями GMAP маршрутів малювати прості лінії. Це також має велику перевагу, що вона дозволяє визначити довжину цієї лінії(в км), якщо це необхідно.Ось як би ви намалювати один рядок:
             /*GMapRoute line_layer;
@@ -403,7 +360,8 @@ namespace GPS_Map
             //you can even add markers at the end of the lines by adding markers to the same layer:
 
             GMapMarker marker_ = new GMarkerCross(p);
-            line_overlay.Markers.Add(marker_);*/
+            line_overlay.Markers.Add(marker_);
+            */
 
 
         }
@@ -419,6 +377,12 @@ namespace GPS_Map
             {
                 if (currentMarker != null)
                 {
+                    //кроме оверлея с маршрутами
+                    if (currentMarker.Overlay.Id == "routes".ToString())
+                    {
+                        return;
+                    }
+
                     PointLatLng point =
                         gMap.FromLocalToLatLng(e.X, e.Y);
                     //Получение координат маркера.
@@ -426,10 +390,6 @@ namespace GPS_Map
                     //Вывод координат маркера в подсказке.
                     currentMarker.ToolTipText =
                         string.Format("{0},{1}", point.Lat, point.Lng);
-                    //if ( currentMarker.Overlay.Id == "markerGPS".ToString() ) 
-                    //{
-                    //    markerStart.Position = currentMarker.Position;
-                    //}
                 }
             } 
         }
@@ -643,6 +603,7 @@ namespace GPS_Map
             //textBo1.Text = point.Lat;
             //textBo2.Text = point.Lng;
             marker.ToolTipText = string.Format("{0},{1}", point.Lat, point.Lng);
+            
 
             //Добавляем маркер в список маркеров.
             markerGPS.Markers.Add(marker);
@@ -770,8 +731,7 @@ namespace GPS_Map
 
                         labelGPS.Text = strGPRMC.lat.ToString() + ":" + strGPRMC.lon.ToString();
                         markerStart = mapControl_AddGPSmarker(new PointLatLng(strGPRMC.lat, strGPRMC.lon));
-
-                        gMap.Position = new GMap.NET.PointLatLng(strGPRMC.lat, strGPRMC.lon);
+                        gMap.Position = markerStart.Position;
                         gMap.Zoom = 14;
                         tabControlMap.SelectedIndex = 0;
                         //Перерисовываем карту.
@@ -801,7 +761,8 @@ namespace GPS_Map
                     //foreach (GMapMarker m in markerGPS.Markers)
                     //MessageBox.Show(Lat.ToString()+" - "+ Lon.ToString());
                     //Устанавливаем координаты центра карты 
-                    gMap.Position = new GMap.NET.PointLatLng(Lat, Lon);
+                    gMap.Position = markerStart.Position;
+
                     gMap.Zoom = 14;
                     tabControlMap.SelectedIndex = 0;
                     //Перерисовываем карту.
@@ -1348,6 +1309,8 @@ namespace GPS_Map
         Happy GMap.NET developing!
              
              */
+             //назначить коллекцию иконок списку
+            listViewRouting.SmallImageList = imageListRouteSign;
 
             // markerStart = mapControl_AddGPSmarker(new PointLatLng(50.458269, 30.633616));
             if (markerStart != null)
@@ -1393,53 +1356,69 @@ namespace GPS_Map
                         double lng = Convert.ToDouble(jCoordinates[i][0].ToString().Replace('.', ','));
                         double lat = Convert.ToDouble(jCoordinates[i][1].ToString().Replace('.', ','));
                         points.Add(new PointLatLng(lat, lng));
-
+                        
+                        /*
                         var crossmarker = new GMarkerCross(new PointLatLng(lat, lng));
-                        //var marker = new 
                         if (jInstructions.Count() >= i) {
                             try
                             {
                                 crossmarker.Tag = jInstructions[i].SelectToken("text").ToString() + " " + jInstructions[i].SelectToken("distance").ToString() + " м.";
                             } catch {
-                               // MessageBox.Show(i.ToString());
                             }
                         }
                         crossmarker.ToolTipText = i.ToString();
                         routes.Markers.Add(crossmarker);
+                        */
 
                     }
 
 
                     //Encoding utf8 = Encoding.GetEncoding("UTF-8");
                     //Encoding win1251 = Encoding.GetEncoding("Windows-1251");
-                    listBoxInstructions.Items.Clear();
+                    //listBoxInstructions.Items.Clear();
+                    listViewRouting.Items.Clear();
+                    listViewRouting.Items.Add(
+                            "Старт",
+                            "marker-from.png"
+                            ).Tag = "[0,0]";
+
+
                     for (int i = 0; i < jInstructions.Count(); i++)
                     {
                         //listBoxInstructions.Items.Add( utf8tocp1251 (jInstructions[i].SelectToken("text").ToString()) + " - " + utf8tocp1251(jInstructions[i].SelectToken("street_name").ToString())) ;
                         //listBoxInstructions.Items.Add(jInstructions[i].SelectToken("text").ToString() + " " + jInstructions[i].SelectToken("distance").ToString() + " м.");
 
-                        var interval = Convert.ToInt16(jInstructions[i].SelectToken("interval")[1].ToString());
+                        var interval = Convert.ToInt16(jInstructions[i].SelectToken("interval")[0].ToString());  //первая точка интервала
 //                        MessageBox.Show(interval.ToString() + " " + jCoordinates[i][0].ToString().Replace('.', ',') + ":" + jCoordinates[i][1].ToString().Replace('.', ','));
                         //Инициализируем новую переменную изображения и
                         //загружаем в нее изображение маркера,
                         //лежащее возле исполняемого файла
                         Bitmap bitmap =
                         //                    Bitmap.FromFile(Application.StartupPath + @"\flag32.png") as Bitmap;
-                        Bitmap.FromFile(Application.StartupPath + @"\img\" + getRouteSignName(jInstructions[i].SelectToken("sign").ToString()) + ".png") as Bitmap;                        //Инициализируем новый маркер с использованием 
+                        Bitmap.FromFile(Application.StartupPath + @"\img\" + getRouteSignName(jInstructions[i].SelectToken("sign").ToString()) + ".png") as Bitmap;
+
+                        //Инициализируем новый маркер с использованием 
                         //созданного нами маркера.
+                        /*
                         var marker = new GMapMarkerImage(new PointLatLng(Convert.ToDouble(jCoordinates[interval][1].ToString().Replace('.', ',')), Convert.ToDouble(jCoordinates[interval][0].ToString().Replace('.', ','))), bitmap);
                         marker.ToolTipText = jInstructions[i].SelectToken("text").ToString() + " " + jInstructions[i].SelectToken("distance").ToString() + " м.";
                         routes.Markers.Add(marker);
+                        */
 
+                        /*
                         listBoxInstructions.Items.Add(
-                            getRouteSignName( jInstructions[i].SelectToken("sign").ToString()) + " " +
+                            //getRouteSignName( jInstructions[i].SelectToken("sign").ToString()) + " " +
                             jInstructions[i].SelectToken("text").ToString() + " " + jInstructions[i].SelectToken("distance").ToString() + " м.");
-
-                        // + " - " + jInstructions[i].SelectToken("street_name").ToString());
-                        //listBoxInstructions.Items.Add(jInstructions[i].SelectToken("text").ToString());
-                        //                    listBoxInstructions.Items.Add(jInstructions[i][4].ToString());
-                        //s =  jInstructions[i].SelectToken("distance") + jInstructions[i].SelectToken("sign");
-                        //listBoxInstructions.Items.Add(s);
+                        */
+                        //listBoxInstructions.DrawToBitmap(bitmap, this.listBoxInstructions.Width, this.listBoxInstructions.Height);
+                        
+                        var item = listViewRouting.Items.Add(
+                            jInstructions[i].SelectToken("text").ToString() + " " + jInstructions[i].SelectToken("distance").ToString() + " м.",
+                            getRouteSignName(jInstructions[i].SelectToken("sign").ToString()) + ".png" 
+                            );
+                        item.Tag = jInstructions[i].SelectToken("interval").ToString();
+                        
+                        
 
                     }
 
@@ -1518,6 +1497,50 @@ namespace GPS_Map
             {
                 com.Close();
             }
+        }
+
+        private void buttonEmulation_Click(object sender, EventArgs e)
+        {
+            //эмуляция
+            markerStart = mapControl_AddGPSmarker(new PointLatLng(50.458269, 30.633616));  // коорд Гагарина 23 
+            gMap.Position = markerStart.Position;
+
+        }
+
+        private void listViewRouting_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<PointLatLng> pointspart = new List<PointLatLng>();
+            if (listViewRouting.SelectedItems.Count == 0) { return; }
+
+            var item = listViewRouting.SelectedItems[0];
+            var elem = item.Tag.ToString().Trim().Replace("\r", "").Replace("\n","").Replace("[","").Replace("]","").Replace(" ","");
+            //JArray jIndex = (JArray)elem[0];
+            //JObject jIndex = JObject.Parse(elem);
+
+            //var objArr = JsonConvert.DeserializeObject (elem, Formatting.Inde );
+            //MessageBox.Show( objArr.ToString() );
+
+            routepartial.Clear();
+
+            //pointspart.Add(points.ElementAt(Convert.ToInt16(elem.Split(',')[0])));
+            //pointspart.Add(points.ElementAt(Convert.ToInt16(elem.Split(',')[1])));
+            Int16 i = 0;
+            for ( i=Convert.ToInt16(elem.Split(',')[0]); i <= Convert.ToInt16(elem.Split(',')[1]) ; i++)
+            {
+                pointspart.Add(points.ElementAt(i));
+            }
+
+            GMapRoute route = new GMapRoute(pointspart, "Сегмент");
+            route.IsHitTestVisible = true;
+            route.Stroke = new Pen(Color.BlueViolet, 4);
+
+            routepartial.Routes.Clear();
+            routepartial.Routes.Add(route);
+            gMap.Overlays.Add(routepartial);
+
+            gMap.ZoomAndCenterRoute(route);
+
+            //routepartial.Routes.
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)

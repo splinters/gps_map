@@ -28,23 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("старт", 4);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.splitContainerMap = new System.Windows.Forms.SplitContainer();
             this.gMap = new GMap.NET.WindowsForms.GMapControl();
+            this.buttonRoute = new System.Windows.Forms.Button();
+            this.labelZoom = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.listBoxInstructions = new System.Windows.Forms.ListBox();
+            this.listViewRouting = new System.Windows.Forms.ListView();
+            this.columnHeaderInstructions = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.imageListRouteSign = new System.Windows.Forms.ImageList(this.components);
             this.textBoxComm = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioButtonWeb = new System.Windows.Forms.RadioButton();
             this.radioButtonTopo = new System.Windows.Forms.RadioButton();
             this.radioButtonKyiv = new System.Windows.Forms.RadioButton();
-            this.buttonRoute = new System.Windows.Forms.Button();
             this.buttonZoomOut = new System.Windows.Forms.Button();
             this.buttonZoomIn = new System.Windows.Forms.Button();
             this.labelStatus = new System.Windows.Forms.Label();
             this.labelGPS = new System.Windows.Forms.Label();
-            this.labelZoom = new System.Windows.Forms.Label();
             this.checkBoxGPSPosition = new System.Windows.Forms.CheckBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.buttonEmulation = new System.Windows.Forms.Button();
             this.tabControlMap = new System.Windows.Forms.TabControl();
             this.tabPageMap = new System.Windows.Forms.TabPage();
             this.tabPageGPS = new System.Windows.Forms.TabPage();
@@ -67,7 +74,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.buttonWeb = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMap)).BeginInit();
             this.splitContainerMap.Panel1.SuspendLayout();
             this.splitContainerMap.Panel2.SuspendLayout();
@@ -77,6 +84,7 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.tabControlMap.SuspendLayout();
             this.tabPageMap.SuspendLayout();
             this.tabPageGPS.SuspendLayout();
@@ -143,6 +151,28 @@
             this.gMap.OnRouteClick += new GMap.NET.WindowsForms.RouteClick(this.gMap_OnRouteClick);
             this.gMap.OnMapZoomChanged += new GMap.NET.MapZoomChanged(this.gMap_OnMapZoomChanged);
             // 
+            // buttonRoute
+            // 
+            this.buttonRoute.Location = new System.Drawing.Point(15, 250);
+            this.buttonRoute.Name = "buttonRoute";
+            this.buttonRoute.Size = new System.Drawing.Size(78, 26);
+            this.buttonRoute.TabIndex = 8;
+            this.buttonRoute.Text = "Маршрут";
+            this.buttonRoute.UseVisualStyleBackColor = true;
+            this.buttonRoute.Click += new System.EventHandler(this.buttonRoute_Click);
+            // 
+            // labelZoom
+            // 
+            this.labelZoom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelZoom.AutoSize = true;
+            this.labelZoom.Location = new System.Drawing.Point(12, 228);
+            this.labelZoom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelZoom.Name = "labelZoom";
+            this.labelZoom.Size = new System.Drawing.Size(41, 16);
+            this.labelZoom.TabIndex = 2;
+            this.labelZoom.Text = "zoom";
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -152,7 +182,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.listBoxInstructions);
+            this.splitContainer1.Panel1.Controls.Add(this.listViewRouting);
             // 
             // splitContainer1.Panel2
             // 
@@ -161,16 +191,59 @@
             this.splitContainer1.SplitterDistance = 143;
             this.splitContainer1.TabIndex = 9;
             // 
-            // listBoxInstructions
+            // listViewRouting
             // 
-            this.listBoxInstructions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBoxInstructions.FormattingEnabled = true;
-            this.listBoxInstructions.HorizontalScrollbar = true;
-            this.listBoxInstructions.ItemHeight = 16;
-            this.listBoxInstructions.Location = new System.Drawing.Point(0, 0);
-            this.listBoxInstructions.Name = "listBoxInstructions";
-            this.listBoxInstructions.Size = new System.Drawing.Size(266, 143);
-            this.listBoxInstructions.TabIndex = 1;
+            this.listViewRouting.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderInstructions});
+            this.listViewRouting.Dock = System.Windows.Forms.DockStyle.Fill;
+            listViewGroup1.Header = "ListViewGroup";
+            listViewGroup1.Name = "listViewGroup1";
+            this.listViewRouting.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup1});
+            this.listViewRouting.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.listViewRouting.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
+            this.listViewRouting.Location = new System.Drawing.Point(0, 0);
+            this.listViewRouting.MultiSelect = false;
+            this.listViewRouting.Name = "listViewRouting";
+            this.listViewRouting.Size = new System.Drawing.Size(266, 143);
+            this.listViewRouting.SmallImageList = this.imageListRouteSign;
+            this.listViewRouting.TabIndex = 3;
+            this.listViewRouting.UseCompatibleStateImageBehavior = false;
+            this.listViewRouting.View = System.Windows.Forms.View.Details;
+            this.listViewRouting.SelectedIndexChanged += new System.EventHandler(this.listViewRouting_SelectedIndexChanged);
+            // 
+            // columnHeaderInstructions
+            // 
+            this.columnHeaderInstructions.Text = "Маршрутний лист";
+            this.columnHeaderInstructions.Width = 441;
+            // 
+            // imageListRouteSign
+            // 
+            this.imageListRouteSign.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListRouteSign.ImageStream")));
+            this.imageListRouteSign.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListRouteSign.Images.SetKeyName(0, "alt_route.png");
+            this.imageListRouteSign.Images.SetKeyName(1, "continue.png");
+            this.imageListRouteSign.Images.SetKeyName(2, "gpx.png");
+            this.imageListRouteSign.Images.SetKeyName(3, "left.png");
+            this.imageListRouteSign.Images.SetKeyName(4, "marker-from.png");
+            this.imageListRouteSign.Images.SetKeyName(5, "marker-icon-blue.png");
+            this.imageListRouteSign.Images.SetKeyName(6, "marker-icon-green.png");
+            this.imageListRouteSign.Images.SetKeyName(7, "marker-icon-red.png");
+            this.imageListRouteSign.Images.SetKeyName(8, "marker-small-blue.png");
+            this.imageListRouteSign.Images.SetKeyName(9, "marker-small-green.png");
+            this.imageListRouteSign.Images.SetKeyName(10, "marker-small-red.png");
+            this.imageListRouteSign.Images.SetKeyName(11, "marker-to.png");
+            this.imageListRouteSign.Images.SetKeyName(12, "pt_end_trip.png");
+            this.imageListRouteSign.Images.SetKeyName(13, "pt_start_trip.png");
+            this.imageListRouteSign.Images.SetKeyName(14, "pt_transfer_to.png");
+            this.imageListRouteSign.Images.SetKeyName(15, "right.png");
+            this.imageListRouteSign.Images.SetKeyName(16, "roundabout.png");
+            this.imageListRouteSign.Images.SetKeyName(17, "sharp_left.png");
+            this.imageListRouteSign.Images.SetKeyName(18, "sharp_right.png");
+            this.imageListRouteSign.Images.SetKeyName(19, "slight_left.png");
+            this.imageListRouteSign.Images.SetKeyName(20, "slight_right.png");
+            this.imageListRouteSign.Images.SetKeyName(21, "unknown.png");
             // 
             // textBoxComm
             // 
@@ -237,16 +310,6 @@
             this.radioButtonKyiv.UseVisualStyleBackColor = true;
             this.radioButtonKyiv.CheckedChanged += new System.EventHandler(this.radioButtonKyiv_CheckedChanged);
             // 
-            // buttonRoute
-            // 
-            this.buttonRoute.Location = new System.Drawing.Point(15, 250);
-            this.buttonRoute.Name = "buttonRoute";
-            this.buttonRoute.Size = new System.Drawing.Size(78, 32);
-            this.buttonRoute.TabIndex = 8;
-            this.buttonRoute.Text = "Маршрут";
-            this.buttonRoute.UseVisualStyleBackColor = true;
-            this.buttonRoute.Click += new System.EventHandler(this.buttonRoute_Click);
-            // 
             // buttonZoomOut
             // 
             this.buttonZoomOut.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -297,18 +360,6 @@
             this.labelGPS.TabIndex = 4;
             this.labelGPS.Text = "-- : --";
             // 
-            // labelZoom
-            // 
-            this.labelZoom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelZoom.AutoSize = true;
-            this.labelZoom.Location = new System.Drawing.Point(12, 228);
-            this.labelZoom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelZoom.Name = "labelZoom";
-            this.labelZoom.Size = new System.Drawing.Size(41, 16);
-            this.labelZoom.TabIndex = 2;
-            this.labelZoom.Text = "zoom";
-            // 
             // checkBoxGPSPosition
             // 
             this.checkBoxGPSPosition.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -322,6 +373,26 @@
             this.checkBoxGPSPosition.Text = "GPS Позиція ";
             this.checkBoxGPSPosition.UseVisualStyleBackColor = true;
             this.checkBoxGPSPosition.CheckedChanged += new System.EventHandler(this.checkBoxGPS_CheckedChanged);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.buttonEmulation);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(266, 282);
+            this.panel3.TabIndex = 10;
+            // 
+            // buttonEmulation
+            // 
+            this.buttonEmulation.Location = new System.Drawing.Point(12, 114);
+            this.buttonEmulation.Name = "buttonEmulation";
+            this.buttonEmulation.Size = new System.Drawing.Size(26, 28);
+            this.buttonEmulation.TabIndex = 0;
+            this.buttonEmulation.Text = "Е";
+            this.toolTip1.SetToolTip(this.buttonEmulation, "Емуляція отримання координати GPS");
+            this.buttonEmulation.UseVisualStyleBackColor = true;
+            this.buttonEmulation.Click += new System.EventHandler(this.buttonEmulation_Click);
             // 
             // tabControlMap
             // 
@@ -357,7 +428,7 @@
             this.tabPageGPS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPageGPS.Name = "tabPageGPS";
             this.tabPageGPS.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPageGPS.Size = new System.Drawing.Size(819, 626);
+            this.tabPageGPS.Size = new System.Drawing.Size(819, 641);
             this.tabPageGPS.TabIndex = 1;
             this.tabPageGPS.Text = "GPS термінал";
             this.tabPageGPS.UseVisualStyleBackColor = true;
@@ -373,7 +444,7 @@
             this.outputList.Margin = new System.Windows.Forms.Padding(4);
             this.outputList.Name = "outputList";
             this.outputList.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.outputList.Size = new System.Drawing.Size(813, 501);
+            this.outputList.Size = new System.Drawing.Size(813, 516);
             this.outputList.TabIndex = 1;
             // 
             // panel1
@@ -386,7 +457,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.textBoxFilter);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(3, 549);
+            this.panel1.Location = new System.Drawing.Point(3, 564);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(813, 75);
@@ -545,18 +616,18 @@
             this.tabPageBrowser.Location = new System.Drawing.Point(4, 25);
             this.tabPageBrowser.Name = "tabPageBrowser";
             this.tabPageBrowser.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageBrowser.Size = new System.Drawing.Size(819, 626);
+            this.tabPageBrowser.Size = new System.Drawing.Size(819, 641);
             this.tabPageBrowser.TabIndex = 2;
             this.tabPageBrowser.Text = "Browser";
             this.tabPageBrowser.UseVisualStyleBackColor = true;
             // 
             // webBrowserMap
             // 
-            this.webBrowserMap.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowserMap.Location = new System.Drawing.Point(3, 45);
+            this.webBrowserMap.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.webBrowserMap.Location = new System.Drawing.Point(3, 413);
             this.webBrowserMap.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowserMap.Name = "webBrowserMap";
-            this.webBrowserMap.Size = new System.Drawing.Size(813, 578);
+            this.webBrowserMap.Size = new System.Drawing.Size(813, 225);
             this.webBrowserMap.TabIndex = 0;
             this.webBrowserMap.Url = new System.Uri("", System.UriKind.Relative);
             // 
@@ -588,14 +659,6 @@
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "http://91.218.192.103:88/pfolio/leaf1/grouplayer.html";
             // 
-            // panel3
-            // 
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(266, 282);
-            this.panel3.TabIndex = 10;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -622,6 +685,7 @@
             this.splitContainer1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel3.ResumeLayout(false);
             this.tabControlMap.ResumeLayout(false);
             this.tabPageMap.ResumeLayout(false);
             this.tabPageGPS.ResumeLayout(false);
@@ -674,9 +738,13 @@
         private System.Windows.Forms.Button buttonWeb;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button buttonRoute;
-        private System.Windows.Forms.ListBox listBoxInstructions;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button buttonEmulation;
+        private System.Windows.Forms.ToolTip toolTip1;
+        public System.Windows.Forms.ImageList imageListRouteSign;
+        private System.Windows.Forms.ListView listViewRouting;
+        private System.Windows.Forms.ColumnHeader columnHeaderInstructions;
     }
 }
 
