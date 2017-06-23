@@ -119,7 +119,7 @@ namespace GPS_Map
         Font origFont;
         Font monoFont;
 
-        public GMapProvider p_topo, p_ukrweb, p_kyiv;
+        public GMapProvider p_topo, p_ukrweb, p_kyiv, p_ato;
         public GMapOverlay routes = new GMapOverlay("routes");
 
         public GMapOverlay routepartial = new GMapOverlay("routepartial");
@@ -252,14 +252,22 @@ namespace GPS_Map
             p_topo   = new IPTMap_gis_ua_topo_loc_Map_Provider("http://localhost:98/tiles/gis_ua_topo");
             p_ukrweb = new IPTMap_gis_ua_topo_loc_Map_Provider("http://localhost:98/tiles/gis_ua_web");
             */
+            //Settings.Option.EmptyTile;
+            //public string EmptyTilePath = "http://192.168.0.50:90/tiles/noisy_grid.png";
             p_topo = new IPTMap_gis_ua_topo_loc_Map_Provider(Settings.Option.TilePath + "/gis_ua_topo");
+            
             //p_topo.MinZoom = 3; p_topo.MaxZoom = 12;
             p_ukrweb = new ukrweb_Map_Provider( Settings.Option.TilePath + "/gis_ua_web");
             //p_ukrweb
             //p_ukrweb.MinZoom = 9; p_ukrweb.MaxZoom = 12;
             p_kyiv   = new kyiv_Map_Provider(Settings.Option.TilePath + "/Kyivska_Zoom9-14");
             //p_kyiv.MaxZoom = 14; p_kyiv.MinZoom = 9;
+            p_ato = new atozone_Map_Provider(Settings.Option.TilePath + "/ato_zone");
+            p_ato.MaxZoom = 16;
+            //p_topo
+
             
+
             gMap.MapProvider = p_ukrweb;
             /*
             gMap.EmptyTileText = "немає даних..";
@@ -715,8 +723,8 @@ namespace GPS_Map
             if (checkBoxGPSPosition.Checked)
             {
 
-                //String GPS = newLine.Str;
-                String GPS = '\r'.ToString()+"$GPRMC,103905.001,A,5027.48162,N,03038.01757,E,00.00,000.0,010617,,,N*7D";
+                String GPS = newLine.Str;
+                //String GPS = '\r'.ToString()+"$GPRMC,103905.001,A,5027.48162,N,03038.01757,E,00.00,000.0,010617,,,N*7D";
                 Regex regexGPS = new Regex(".GPS:");  //, RegexOptions.IgnoreCase)
                 Regex regexGPRMC = new Regex("GPRMC");  //, RegexOptions.IgnoreCase)
 
@@ -1505,6 +1513,11 @@ namespace GPS_Map
             markerStart = mapControl_AddGPSmarker(new PointLatLng(50.458269, 30.633616));  // коорд Гагарина 23 
             gMap.Position = markerStart.Position;
 
+        }
+
+        private void radioButtonAto_CheckedChanged(object sender, EventArgs e)
+        {
+            gMap.MapProvider = p_ato;
         }
 
         private void listViewRouting_SelectedIndexChanged(object sender, EventArgs e)

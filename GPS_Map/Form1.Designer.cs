@@ -42,6 +42,7 @@
             this.imageListRouteSign = new System.Windows.Forms.ImageList(this.components);
             this.textBoxComm = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButtonAto = new System.Windows.Forms.RadioButton();
             this.radioButtonWeb = new System.Windows.Forms.RadioButton();
             this.radioButtonTopo = new System.Windows.Forms.RadioButton();
             this.radioButtonKyiv = new System.Windows.Forms.RadioButton();
@@ -118,7 +119,7 @@
             this.splitContainerMap.Panel2.Controls.Add(this.checkBoxGPSPosition);
             this.splitContainerMap.Panel2.Controls.Add(this.panel3);
             this.splitContainerMap.Size = new System.Drawing.Size(813, 637);
-            this.splitContainerMap.SplitterDistance = 543;
+            this.splitContainerMap.SplitterDistance = 542;
             this.splitContainerMap.TabIndex = 1;
             // 
             // gMap
@@ -131,7 +132,7 @@
             this.gMap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.gMap.LevelsKeepInMemmory = 5;
             this.gMap.Location = new System.Drawing.Point(0, 0);
-            this.gMap.Margin = new System.Windows.Forms.Padding(4);
+            this.gMap.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gMap.MarkersEnabled = true;
             this.gMap.MaxZoom = 2;
             this.gMap.MinZoom = 2;
@@ -145,7 +146,7 @@
             this.gMap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.gMap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gMap.ShowTileGridLines = false;
-            this.gMap.Size = new System.Drawing.Size(543, 637);
+            this.gMap.Size = new System.Drawing.Size(542, 637);
             this.gMap.TabIndex = 0;
             this.gMap.Zoom = 0D;
             this.gMap.OnRouteClick += new GMap.NET.WindowsForms.RouteClick(this.gMap_OnRouteClick);
@@ -154,8 +155,9 @@
             // buttonRoute
             // 
             this.buttonRoute.Location = new System.Drawing.Point(15, 250);
+            this.buttonRoute.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonRoute.Name = "buttonRoute";
-            this.buttonRoute.Size = new System.Drawing.Size(78, 26);
+            this.buttonRoute.Size = new System.Drawing.Size(77, 26);
             this.buttonRoute.TabIndex = 8;
             this.buttonRoute.Text = "Маршрут";
             this.buttonRoute.UseVisualStyleBackColor = true;
@@ -169,7 +171,7 @@
             this.labelZoom.Location = new System.Drawing.Point(12, 228);
             this.labelZoom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelZoom.Name = "labelZoom";
-            this.labelZoom.Size = new System.Drawing.Size(41, 16);
+            this.labelZoom.Size = new System.Drawing.Size(42, 17);
             this.labelZoom.TabIndex = 2;
             this.labelZoom.Text = "zoom";
             // 
@@ -177,6 +179,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 282);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -187,8 +190,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.textBoxComm);
-            this.splitContainer1.Size = new System.Drawing.Size(266, 355);
-            this.splitContainer1.SplitterDistance = 143;
+            this.splitContainer1.Size = new System.Drawing.Size(267, 355);
+            this.splitContainer1.SplitterDistance = 234;
             this.splitContainer1.TabIndex = 9;
             // 
             // listViewRouting
@@ -204,9 +207,10 @@
             this.listViewRouting.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1});
             this.listViewRouting.Location = new System.Drawing.Point(0, 0);
+            this.listViewRouting.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listViewRouting.MultiSelect = false;
             this.listViewRouting.Name = "listViewRouting";
-            this.listViewRouting.Size = new System.Drawing.Size(266, 143);
+            this.listViewRouting.Size = new System.Drawing.Size(267, 234);
             this.listViewRouting.SmallImageList = this.imageListRouteSign;
             this.listViewRouting.TabIndex = 3;
             this.listViewRouting.UseCompatibleStateImageBehavior = false;
@@ -249,37 +253,50 @@
             // 
             this.textBoxComm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxComm.Location = new System.Drawing.Point(0, 0);
-            this.textBoxComm.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxComm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxComm.Multiline = true;
             this.textBoxComm.Name = "textBoxComm";
             this.textBoxComm.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxComm.Size = new System.Drawing.Size(266, 208);
+            this.textBoxComm.Size = new System.Drawing.Size(267, 117);
             this.textBoxComm.TabIndex = 3;
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.radioButtonAto);
             this.groupBox1.Controls.Add(this.radioButtonWeb);
             this.groupBox1.Controls.Add(this.radioButtonTopo);
             this.groupBox1.Controls.Add(this.radioButtonKyiv);
             this.groupBox1.Location = new System.Drawing.Point(44, 4);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(216, 139);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(218, 139);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Basemaps";
+            // 
+            // radioButtonAto
+            // 
+            this.radioButtonAto.AutoSize = true;
+            this.radioButtonAto.Location = new System.Drawing.Point(8, 108);
+            this.radioButtonAto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonAto.Name = "radioButtonAto";
+            this.radioButtonAto.Size = new System.Drawing.Size(95, 21);
+            this.radioButtonAto.TabIndex = 3;
+            this.radioButtonAto.Text = "Зона АТО";
+            this.radioButtonAto.UseVisualStyleBackColor = true;
+            this.radioButtonAto.CheckedChanged += new System.EventHandler(this.radioButtonAto_CheckedChanged);
             // 
             // radioButtonWeb
             // 
             this.radioButtonWeb.AutoSize = true;
             this.radioButtonWeb.Checked = true;
             this.radioButtonWeb.Location = new System.Drawing.Point(8, 52);
-            this.radioButtonWeb.Margin = new System.Windows.Forms.Padding(4);
+            this.radioButtonWeb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButtonWeb.Name = "radioButtonWeb";
-            this.radioButtonWeb.Size = new System.Drawing.Size(102, 20);
+            this.radioButtonWeb.Size = new System.Drawing.Size(106, 21);
             this.radioButtonWeb.TabIndex = 2;
             this.radioButtonWeb.TabStop = true;
             this.radioButtonWeb.Text = "ІПТ Україна";
@@ -290,9 +307,9 @@
             // 
             this.radioButtonTopo.AutoSize = true;
             this.radioButtonTopo.Location = new System.Drawing.Point(8, 23);
-            this.radioButtonTopo.Margin = new System.Windows.Forms.Padding(4);
+            this.radioButtonTopo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButtonTopo.Name = "radioButtonTopo";
-            this.radioButtonTopo.Size = new System.Drawing.Size(59, 20);
+            this.radioButtonTopo.Size = new System.Drawing.Size(62, 21);
             this.radioButtonTopo.TabIndex = 1;
             this.radioButtonTopo.Text = "Топо";
             this.radioButtonTopo.UseVisualStyleBackColor = true;
@@ -302,9 +319,9 @@
             // 
             this.radioButtonKyiv.AutoSize = true;
             this.radioButtonKyiv.Location = new System.Drawing.Point(8, 80);
-            this.radioButtonKyiv.Margin = new System.Windows.Forms.Padding(4);
+            this.radioButtonKyiv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButtonKyiv.Name = "radioButtonKyiv";
-            this.radioButtonKyiv.Size = new System.Drawing.Size(82, 20);
+            this.radioButtonKyiv.Size = new System.Drawing.Size(85, 21);
             this.radioButtonKyiv.TabIndex = 0;
             this.radioButtonKyiv.Text = "Київська";
             this.radioButtonKyiv.UseVisualStyleBackColor = true;
@@ -314,7 +331,7 @@
             // 
             this.buttonZoomOut.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonZoomOut.Location = new System.Drawing.Point(7, 49);
-            this.buttonZoomOut.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonZoomOut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonZoomOut.Name = "buttonZoomOut";
             this.buttonZoomOut.Size = new System.Drawing.Size(32, 30);
             this.buttonZoomOut.TabIndex = 7;
@@ -326,7 +343,7 @@
             // 
             this.buttonZoomIn.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonZoomIn.Location = new System.Drawing.Point(7, 12);
-            this.buttonZoomIn.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonZoomIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonZoomIn.Name = "buttonZoomIn";
             this.buttonZoomIn.Size = new System.Drawing.Size(32, 30);
             this.buttonZoomIn.TabIndex = 6;
@@ -343,7 +360,7 @@
             this.labelStatus.Location = new System.Drawing.Point(15, 198);
             this.labelStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(35, 18);
+            this.labelStatus.Size = new System.Drawing.Size(42, 19);
             this.labelStatus.TabIndex = 5;
             this.labelStatus.Text = "-- : --";
             // 
@@ -356,7 +373,7 @@
             this.labelGPS.Location = new System.Drawing.Point(15, 172);
             this.labelGPS.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelGPS.Name = "labelGPS";
-            this.labelGPS.Size = new System.Drawing.Size(35, 18);
+            this.labelGPS.Size = new System.Drawing.Size(42, 19);
             this.labelGPS.TabIndex = 4;
             this.labelGPS.Text = "-- : --";
             // 
@@ -368,7 +385,7 @@
             this.checkBoxGPSPosition.Location = new System.Drawing.Point(52, 149);
             this.checkBoxGPSPosition.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBoxGPSPosition.Name = "checkBoxGPSPosition";
-            this.checkBoxGPSPosition.Size = new System.Drawing.Size(113, 20);
+            this.checkBoxGPSPosition.Size = new System.Drawing.Size(119, 21);
             this.checkBoxGPSPosition.TabIndex = 0;
             this.checkBoxGPSPosition.Text = "GPS Позиція ";
             this.checkBoxGPSPosition.UseVisualStyleBackColor = true;
@@ -379,15 +396,17 @@
             this.panel3.Controls.Add(this.buttonEmulation);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(266, 282);
+            this.panel3.Size = new System.Drawing.Size(267, 282);
             this.panel3.TabIndex = 10;
             // 
             // buttonEmulation
             // 
             this.buttonEmulation.Location = new System.Drawing.Point(12, 114);
+            this.buttonEmulation.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonEmulation.Name = "buttonEmulation";
-            this.buttonEmulation.Size = new System.Drawing.Size(26, 28);
+            this.buttonEmulation.Size = new System.Drawing.Size(27, 28);
             this.buttonEmulation.TabIndex = 0;
             this.buttonEmulation.Text = "Е";
             this.toolTip1.SetToolTip(this.buttonEmulation, "Емуляція отримання координати GPS");
@@ -441,7 +460,7 @@
             this.outputList.IntegralHeight = false;
             this.outputList.ItemHeight = 16;
             this.outputList.Location = new System.Drawing.Point(3, 48);
-            this.outputList.Margin = new System.Windows.Forms.Padding(4);
+            this.outputList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.outputList.Name = "outputList";
             this.outputList.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.outputList.Size = new System.Drawing.Size(813, 516);
@@ -469,7 +488,7 @@
             this.buttonCicle.Font = new System.Drawing.Font("Wingdings", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.buttonCicle.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.buttonCicle.Location = new System.Drawing.Point(740, 43);
-            this.buttonCicle.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonCicle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonCicle.Name = "buttonCicle";
             this.buttonCicle.Size = new System.Drawing.Size(67, 28);
             this.buttonCicle.TabIndex = 14;
@@ -481,8 +500,8 @@
             // buttonToggleScrolling
             // 
             this.buttonToggleScrolling.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonToggleScrolling.Location = new System.Drawing.Point(659, 10);
-            this.buttonToggleScrolling.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonToggleScrolling.Location = new System.Drawing.Point(658, 10);
+            this.buttonToggleScrolling.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonToggleScrolling.Name = "buttonToggleScrolling";
             this.buttonToggleScrolling.Size = new System.Drawing.Size(147, 28);
             this.buttonToggleScrolling.TabIndex = 13;
@@ -498,7 +517,7 @@
             this.label2.Location = new System.Drawing.Point(5, 48);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 15);
+            this.label2.Size = new System.Drawing.Size(80, 17);
             this.label2.TabIndex = 11;
             this.label2.Text = "Команда:";
             // 
@@ -507,7 +526,7 @@
             this.buttonSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonSend.Font = new System.Drawing.Font("Wingdings 3", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.buttonSend.Location = new System.Drawing.Point(659, 42);
-            this.buttonSend.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonSend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonSend.Name = "buttonSend";
             this.buttonSend.Size = new System.Drawing.Size(67, 28);
             this.buttonSend.TabIndex = 10;
@@ -520,9 +539,9 @@
             this.textBoxCommand.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.textBoxCommand.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxCommand.Location = new System.Drawing.Point(99, 46);
-            this.textBoxCommand.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxCommand.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxCommand.Name = "textBoxCommand";
-            this.textBoxCommand.Size = new System.Drawing.Size(553, 21);
+            this.textBoxCommand.Size = new System.Drawing.Size(553, 24);
             this.textBoxCommand.TabIndex = 7;
             // 
             // label1
@@ -533,7 +552,7 @@
             this.label1.Location = new System.Drawing.Point(5, 16);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 15);
+            this.label1.Size = new System.Drawing.Size(71, 17);
             this.label1.TabIndex = 9;
             this.label1.Text = "Фільтр:";
             // 
@@ -542,9 +561,9 @@
             this.textBoxFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.textBoxFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxFilter.Location = new System.Drawing.Point(99, 14);
-            this.textBoxFilter.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxFilter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxFilter.Name = "textBoxFilter";
-            this.textBoxFilter.Size = new System.Drawing.Size(553, 21);
+            this.textBoxFilter.Size = new System.Drawing.Size(553, 24);
             this.textBoxFilter.TabIndex = 8;
             this.textBoxFilter.TextChanged += new System.EventHandler(this.textBoxFilter_TextChanged);
             // 
@@ -564,8 +583,8 @@
             // buttonAbout
             // 
             this.buttonAbout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAbout.Location = new System.Drawing.Point(750, 6);
-            this.buttonAbout.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonAbout.Location = new System.Drawing.Point(749, 6);
+            this.buttonAbout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonAbout.Name = "buttonAbout";
             this.buttonAbout.Size = new System.Drawing.Size(56, 28);
             this.buttonAbout.TabIndex = 4;
@@ -576,8 +595,8 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(659, 6);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Location = new System.Drawing.Point(658, 6);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(85, 28);
             this.button2.TabIndex = 3;
@@ -602,10 +621,10 @@
             this.textBoxConnection.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.textBoxConnection.Location = new System.Drawing.Point(9, 7);
-            this.textBoxConnection.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxConnection.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxConnection.Name = "textBoxConnection";
             this.textBoxConnection.ReadOnly = true;
-            this.textBoxConnection.Size = new System.Drawing.Size(416, 22);
+            this.textBoxConnection.Size = new System.Drawing.Size(416, 26);
             this.textBoxConnection.TabIndex = 0;
             this.textBoxConnection.Click += new System.EventHandler(this.textBoxConnection_Click);
             // 
@@ -614,8 +633,9 @@
             this.tabPageBrowser.Controls.Add(this.webBrowserMap);
             this.tabPageBrowser.Controls.Add(this.panel2);
             this.tabPageBrowser.Location = new System.Drawing.Point(4, 25);
+            this.tabPageBrowser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPageBrowser.Name = "tabPageBrowser";
-            this.tabPageBrowser.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageBrowser.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPageBrowser.Size = new System.Drawing.Size(819, 641);
             this.tabPageBrowser.TabIndex = 2;
             this.tabPageBrowser.Text = "Browser";
@@ -624,7 +644,8 @@
             // webBrowserMap
             // 
             this.webBrowserMap.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.webBrowserMap.Location = new System.Drawing.Point(3, 413);
+            this.webBrowserMap.Location = new System.Drawing.Point(3, 414);
+            this.webBrowserMap.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.webBrowserMap.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowserMap.Name = "webBrowserMap";
             this.webBrowserMap.Size = new System.Drawing.Size(813, 225);
@@ -636,16 +657,18 @@
             this.panel2.Controls.Add(this.buttonWeb);
             this.panel2.Controls.Add(this.textBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Location = new System.Drawing.Point(3, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(813, 42);
             this.panel2.TabIndex = 1;
             // 
             // buttonWeb
             // 
-            this.buttonWeb.Location = new System.Drawing.Point(440, 3);
+            this.buttonWeb.Location = new System.Drawing.Point(440, 2);
+            this.buttonWeb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonWeb.Name = "buttonWeb";
-            this.buttonWeb.Size = new System.Drawing.Size(73, 24);
+            this.buttonWeb.Size = new System.Drawing.Size(73, 25);
             this.buttonWeb.TabIndex = 1;
             this.buttonWeb.Text = "go";
             this.buttonWeb.UseVisualStyleBackColor = true;
@@ -654,6 +677,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(5, 5);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(424, 22);
             this.textBox1.TabIndex = 0;
@@ -666,7 +690,7 @@
             this.ClientSize = new System.Drawing.Size(827, 670);
             this.Controls.Add(this.tabControlMap);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GPS термінал з картами";
@@ -745,6 +769,7 @@
         public System.Windows.Forms.ImageList imageListRouteSign;
         private System.Windows.Forms.ListView listViewRouting;
         private System.Windows.Forms.ColumnHeader columnHeaderInstructions;
+        private System.Windows.Forms.RadioButton radioButtonAto;
     }
 }
 

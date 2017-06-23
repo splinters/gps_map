@@ -123,22 +123,37 @@ namespace GPS_Map
 			Settings.Option.LogFileName = textBox1.Text;
 
             Settings.Option.TilePath = textBoxTilePath.Text;
+//            Settings.Option.EmptyTile = textBoxEmptyTile.Text;
 
-			CommPort com = CommPort.Instance;
-			com.Open();
+            try
+            {
+                CommPort com = CommPort.Instance;
+                com.Open();
+                Settings.Write();
 
-			Settings.Write();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
 
-			Close();
 		}
 
 		// Cancel
         private void button2_Click(object sender, EventArgs e)
         {
-            Close();
+            try
+            {
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
 
-		private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
             Settings.Option.LogFileName = "";
 

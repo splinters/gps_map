@@ -4,9 +4,14 @@ namespace GMap.NET.MapProviders
     using System;
     using GMap.NET.Projections;
 
+    
 
     public abstract class IPTMapProviderBase : GMapProvider
     {
+
+
+        public string EmptyTilePath = "http://192.168.0.50:90/tiles/noisy_grid.png";
+
 
         #region GMapProvider Members
         public override Guid Id
@@ -37,7 +42,6 @@ namespace GMap.NET.MapProviders
             }
         }
         static string UrlFormat= "/{0}/{1}/{2}.png";
-        public string EmptyTilePath = "http://192.168.0.50:90/tiles/noisy_grid.png";
 
         public override PureImage GetTileImage(GPoint pos, int zoom)
         {
@@ -59,6 +63,11 @@ namespace GMap.NET.MapProviders
         {
             return string.Format(UrlFormat, zoom, pos.X, pos.Y);
         }
+        public void SetEmptyTile(string emptytile)
+        {
+            EmptyTilePath = emptytile;
+        }
+    
         #endregion
     }
 
@@ -69,6 +78,7 @@ namespace GMap.NET.MapProviders
 //    public class IPTMap_gis_ua_topo_loc_Map_Provider : GMapProvider
     {
         static string UrlFormat;
+//        public override string EmptyTilePath = "http://192.168.0.50:90/tiles/noisy_grid.png";
         public IPTMap_gis_ua_topo_loc_Map_Provider(string tileurl)
         {
             //UrlFormat = "http://localhost:98/tiles/gis_ua_topo" + "/{0}/{1}/{2}.png";
@@ -190,7 +200,7 @@ namespace GMap.NET.MapProviders
                 return name;
             }
         }
-        
+
         public override PureImage GetTileImage(GPoint pos, int zoom)
         {
             string url = MakeTileImageUrl(pos, zoom, LanguageStr);
@@ -213,7 +223,55 @@ namespace GMap.NET.MapProviders
         {
             return string.Format(UrlFormat, zoom, pos.X, pos.Y);
         }
-        
-    }
+        }
+        public class atozone_Map_Provider : IPTMapProviderBase
+        {
+            static string UrlFormat;
+            public atozone_Map_Provider(string tileurl)
+            {
+                UrlFormat = tileurl + "/{0}/{1}/{2}.png";
+            }
+            readonly Guid id = new Guid("4b6598f5-8422-48d1-820e-b130996b4a84");
+            public override Guid Id
+            {
+                get
+                {
+                    return id;
+                }
+            }
+            readonly string name = "atozone_Map_Provider";
+            public override string Name
+            {
+                get
+                {
+                    return name;
+                }
+            }
+
+            public override PureImage GetTileImage(GPoint pos, int zoom)
+            {
+                string url = MakeTileImageUrl(pos, zoom, LanguageStr);
+                try
+                {
+                    return GetTileImageUsingHttp(url);
+                }
+                catch (Exception)
+                {
+                    //System.Windows.Forms.MessageBox.Show(ex.Message);
+                    //если не найден возвращать тайл для пустого поля 
+                    return GetTileImageUsingHttp(EmptyTilePath);
+                    //Settings.Option.
+
+                }
+
+            }
+
+            string MakeTileImageUrl(GPoint pos, int zoom, string language)
+            {
+                return string.Format(UrlFormat, zoom, pos.X, pos.Y);
+            }
+
+        }
+    
 
 }
